@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seed Catalog</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1,
+      h2 {
+        color: #333;
+        text-align: center;
+      }
+      ol {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      li:hover {
+        background-color: #f0f0f0;
+      }
+      /* Add more backgrounds for each variety */
+      .seeds-bg {
+        background-color: #5cb85c; /* Green */
+        color: #fff;
+      }
+      .cotton-bg {
+        background-color: #5bc0de; /* Blue */
+        color: #fff;
+      }
+      .other-bg {
+        background-color: #d9534f; /* Red */
+        color: #fff;
+      }
+      .creative-bg {
+        background-color: #f0ad4e; /* Orange */
+        color: #fff;
+      }
+      /* Background images */
+      .chilli-bg {
+        background-image: url("chilli.jpg");
+        background-size: cover;
+        color: #fff;
+      }
+      .cotton-img-bg {
+        background-image: url("cotton.jpg");
+        background-size: cover;
+        color: #fff;
+      }
+      .farmer-bg {
+        background-image: url("farmer.jpg");
+        background-size: cover;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Seed Catalog</h1>
+      <h2 class="seeds-bg">Seeds</h2>
+      <ol id="seeds">
+        <!-- Seeds list will be populated dynamically using JavaScript -->
+      </ol>
+      <h2 class="cotton-bg">Cotton</h2>
+      <ol id="cotton">
+        <!-- Cotton list will be populated dynamically using JavaScript -->
+      </ol>
+      <h2 class="other-bg">Other Varieties</h2>
+      <ol id="other">
+        <!-- Other varieties list will be populated dynamically using JavaScript -->
+      </ol>
+      <h2 class="creative-bg">Creative Functionalities</h2>
+      <button class="btn btn-primary" id="toggleList">Toggle Seed Lists</button>
+      <p>Time Remaining: <span id="countdown">60</span> seconds</p>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // JavaScript to populate the seed lists
+      window.onload = function () {
+        var seeds = document.getElementById("seeds");
+        var cotton = document.getElementById("cotton");
+        var other = document.getElementById("other");
+
+        var seedData = {
+          Seeds: [
+            "NUgenes - Devi, Bharathi, Annapurna, Adithya, Anantha",
+            "Duflora - Ugadhi, D-Hot, Laxmi 54, Golden Hot",
+            "B-BIO SEEDS - BHAIRAVI, BHP-3222, BCH-441, JAI KISAN",
+            "PHS - Swathi, Yashwanth, phs - 4640, phs - 941, Harathi",
+            "JINDAL - Rajalakshmi, Arudhra 22, Sruthi 9",
+            "EAGLE SEEDS - Eagle hot, Eagle Shakthi",
+            "SEMINIES - SVHA - 2222, SVHM - 1377, SVHA - 9093",
+            "DHARTHI SEEDS - Darshika Seeds, Nitara",
+            "ANKUR - Sarangi, RENUKA",
+            "NANDHINI CROP CARE - NCCH - 1122, VIKRAM TEJA, oRANGE GOLD",
+            "MAX SEEDS - YAGNA, GAAYATHRI",
+            "BLANK - ARMOUR, AJANTHA, AGNIONE, GEETHANJALI",
+            "BLANK2 - LASER, VIGNESH, DCH - 224, TEJITHA 642",
+            "BLANK3 - JAMUNA 116, SOUNDARYA 117, MANJEERA 569, ELITE 214, ELITE S9",
+            "BLANK4 - RED HOT, RR - 66, MANJEERA, NCH - 1788",
+            "VIMAL - TEJAL, VIMAL 22",
+            "ASTALAKSHMI SEEDS - ASPL PUSHPA, ROYAL HOT, KAPILA",
+            "GEMINI - BHAIRAV, GEMINI HOT, LEGEND, NAYAK",
+            "RALLIES INDIA LIMITED - MEGAHOT, RH 6301",
+            "PAVANI AGRITECH - GAVASKAR, BUADMAN",
+            "JIVALOGICS - TEJASWI, KARONA - 99",
+            "V.J BIO TECH - VARALAKSHMI, AVATAAR",
+            "LAXMI INPUTS - LAXMI STAR, SITA, SOWMYA",
+            "SPICY SEEDS - SPICY 678, SUPER TIGER",
+            "MEGHANA SEEDS - PUSHPA - 99, LEADER - 117",
+            "MAHARASTA HYBRID SEEDS - Yashashwini, Mycho teja",
+          ],
+          Cotton: [
+            "SRI RAMA SEEDS - Shakthi BG-II, Shakthi Plus BG-II, SRCH 819",
+            "DHARTHI SEEDS - GAUTHAM, ARCH 045",
+            "ANKUR - Victor BG-II, KIRTI BG-II, SHUBHAM BG-II, ANKUR 3224 BG-II",
+            "RALLIES INDIA LIMITED - ASHIRWAD, AATISH",
+            "SRIRAM SEEDS - BHEEMLA BG - II, PM BG - II",
+            "BLANK - MAGIC, RCH 797, SUPER GOLD, BHINDAS, KDCH",
+          ],
+          Other: [
+            // Other varieties here...
+          ],
+        };
+
+        // Function to populate lists
+        function populateList(list, data) {
+          data.forEach(function (item) {
+            var listItem = document.createElement("li");
+            listItem.textContent = item;
+            list.appendChild(listItem);
+          });
+        }
+
+        // Populate Lists
+        populateList(seeds, seedData.Seeds);
+        populateList(cotton, seedData.Cotton);
+        populateList(other, seedData.Other);
+
+        // Toggle Seed Lists Functionality
+        document
+          .getElementById("toggleList")
+          .addEventListener("click", function () {
+            var seedsList = document.getElementById("seeds");
+            var cottonList = document.getElementById("cotton");
+            var otherList = document.getElementById("other");
+            seedsList.classList.toggle("d-none");
+            cottonList.classList.toggle("d-none");
+            otherList.classList.toggle("d-none");
+          });
+
+        // Countdown Timer Functionality
+        var countdownElement = document.getElementById("countdown");
+        var countdownSeconds = 60;
+        var countdownInterval = setInterval(function () {
+          countdownSeconds--;
+          countdownElement.textContent = countdownSeconds;
+          if (countdownSeconds <= 0) {
+            clearInterval(countdownInterval);
+            countdownElement.textContent = "Time up!";
+          }
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>
